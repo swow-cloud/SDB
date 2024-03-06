@@ -447,12 +447,11 @@ final class WebSocketDebugger extends Debugger
                                                                     $this->out(Json::encode($info));
                                                                     break;
                                                                 case 'config':
-                                                                    // todo 但是不建议获取敏感信息
                                                                     $config = di()->get(ConfigInterface::class);
                                                                     $reflection = new ReflectionClass($config);
                                                                     $property = $reflection->getProperty('configs');
                                                                     $this->out(
-                                                                        Json::encode($property->getValue($config)),
+                                                                        Json::encode($property->getValue($config),JSON_PRETTY_PRINT),
                                                                     );
                                                                     break;
                                                                 case 'route':
